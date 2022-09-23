@@ -1,9 +1,13 @@
+#Establish db connection from sqlite3 import connect
 from databricks import sql
+from configparser import ConfigParser
+config = ConfigParser()
+config.read(r'./config/keys_config.cfg')
 
 
-connection = sql.connect(server_hostname= "adb-2380197089486732.12.azuredatabricks.net",
-                         http_path= "sql/protocolv1/o/2380197089486732/0916-171417-6r6tbrhq",
-                         access_token= "dapiee775ec9dcc06ec2998d1594cd7ce220-3"
+connection = sql.connect(server_hostname= config.get("databricks", "server_hostname"),
+                         http_path= config.get("databricks", "http_path"),
+                         access_token=config.get("databricks", "access_token")
                         ) 
 
 cursor = connection.cursor()

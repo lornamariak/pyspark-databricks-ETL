@@ -2,3 +2,5 @@ databricks-cli==0.17.3
 databricks-connect==10.4.12
 databricks-sql-connector==2.0.5
 ipython 
+black
+pylint

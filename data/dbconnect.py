@@ -11,6 +11,7 @@ connection = sql.connect(server_hostname= config.get("databricks", "server_hostn
                         ) 
 
 cursor = connection.cursor()
+
 #test connection
 cursor.execute("USE nycdata_db;")
 cursor.execute("SELECT * FROM offence LIMIT 2")
