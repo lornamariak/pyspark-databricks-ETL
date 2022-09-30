@@ -16,6 +16,6 @@ def selectdb(dbname):
     cursor.execute(f"USE {dbname};")
     print(cursor.execute("SELECT CURRENT_DATABASE();"))
 
-selectdb("nycdata_db")
+#selectdb("nycdata_db")
 
 
