@@ -1,4 +1,3 @@
-#Establish db connection from sqlite3 import connect
 from databricks import sql
 from configparser import ConfigParser
 config = ConfigParser()
@@ -11,3 +10,12 @@ connection = sql.connect(server_hostname= config.get("databricks", "server_hostn
                         ) 
 
 cursor = connection.cursor()
+
+#select a database
+def selectdb(dbname):
+    cursor.execute(f"USE {dbname};")
+    print(cursor.execute("SELECT CURRENT_DATABASE();"))
+
+selectdb("nycdata_db")
+
+
