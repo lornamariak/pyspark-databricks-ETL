@@ -1,3 +1,4 @@
+
 from databricks import sql
 from configparser import ConfigParser
 config = ConfigParser()
@@ -11,11 +12,16 @@ connection = sql.connect(server_hostname= config.get("databricks", "server_hostn
 
 cursor = connection.cursor()
 
+
+#list available databases
+
+
+
 #select a database
 def selectdb(dbname):
     cursor.execute(f"USE {dbname};")
     print(cursor.execute("SELECT CURRENT_DATABASE();"))
 
-#selectdb("nycdata_db")
+selectdb("nycdata_db")
 
 

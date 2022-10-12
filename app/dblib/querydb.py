@@ -1,3 +1,5 @@
+import pandas as pd
+
 from databricks import sql
 from configparser import ConfigParser
 config = ConfigParser()
@@ -16,9 +18,14 @@ def query(tablename, limit):
     cursor.execute("USE nycdata_db;")
     cursor.execute(f"SELECT * FROM {tablename} LIMIT {limit}")
     result = cursor.fetchall()
-    for row in result:
-        print(row)
-        
-#sort query
+    df = pd.DataFrame(result)
+    if tablename == "vehicle":
+        df.columns = ["Summons number", "Plate ID", "Registration State", "Plate type","Issue Date"]
+    elif tablename == "offence":
+         df.columns = ["Summons number", "Violation Code", "Violation Location", "Violation Precinct","Violation Description"]
+    else:
+        df.columns = ["Summons number", "Vehicle type", "Vehicle make", "Vehicle Color","Violation year"]
+    print(df)
+    pass
 
 
